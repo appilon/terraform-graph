@@ -12,11 +12,12 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
+	"html"
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 
-	"github.com/awalterschulze/gographviz"
 	"github.com/pkg/browser"
 )
 
@@ -58,14 +59,12 @@ func getData() []byte {
 }
 
 func main() {
-	graph, err := gographviz.Read(getData())
-	must(err)
-
-	d3json, err := toD3Json(graph)
-	must(err)
-
 	// TODO use html/template
-	page := fmt.Sprintf(template, d3json)
+	graph := html.EscapeString(string(getData()))
+	// dagre-d3 doesn't like shape=box
+	// https://github.com/dagrejs/dagre-d3/issues/131
+	graph = strings.Replace(graph, "box", "rect", -1)
+	page := fmt.Sprintf(template, graph)
 
 	must(browser.OpenReader(bytes.NewBufferString(page)))
 }

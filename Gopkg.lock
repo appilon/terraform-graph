@@ -2,19 +2,6 @@
 
 
 [[projects]]
-  name = "github.com/awalterschulze/gographviz"
-  packages = [
-    ".",
-    "ast",
-    "internal/errors",
-    "internal/lexer",
-    "internal/parser",
-    "internal/token"
-  ]
-  revision = "c84395e536e1a1199093a4e6253d1bee99e4cd2a"
-  version = "v2.0"
-
-[[projects]]
   branch = "master"
   name = "github.com/pkg/browser"
   packages = ["."]
@@ -23,6 +10,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "b71441169d38e28db4f42f6d11d7e50750d522094e5cabe322feb4b35f1936bf"
+  inputs-digest = "68d49c04b6ed1c7c0dedc9884e56f5f5b27a703660e812cade105fa7f36a4d23"
   solver-name = "gps-cdcl"
   solver-version = 1
