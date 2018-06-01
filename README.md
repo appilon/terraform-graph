@@ -40,13 +40,13 @@ Some current aspects of the POC that I don't like:
  
 Had to search/replace some shape annotation (see code) `terraform graph` outputted but `dagre` did not like. The good news is we control `terraform` so we can upgrade/improve what `terraform graph` outputs (currently the labels seem a bit strange with this `[root] ` prefix on nodes, I'm not sure either if the graph is actually accurate? I did not really try and make sense of that, just get the graph rendering).
 
-Having extensive frontend experience I can say this is not how you would make a modern single page app. Currently I've inlined the html template into go (so everything is baked into the binary), I link the dependencies through old fashioned `<script src="..."></script>` (meaning currently this tool requires an internet connection at runtime). That can be solved by inlining the JS deps into the template but now we need to perform vendoring of the JS dependencies. As is the development story involves be working in an html file, when done I paste the whole thing into `template.go`, we will need some javascript packaging to make development tolerable. Although I love Go, I would argue given how little Go code there is here, we could do the entire tool in JS, but still make it a binary with one of these:
+Having extensive frontend experience I can say this is not how you would make a modern single page app. Currently I've inlined the html template into go (so everything is baked into the binary), I link the dependencies through old fashioned `<script src="..."></script>` (meaning currently this tool requires an internet connection at runtime). That can be solved by inlining the JS deps into the template but now we need to perform vendoring of the JS dependencies. The current development story isn't ideal either: I edit and preview an html file, when done I paste the whole thing into `template.go` but substitute my sample data with `%s`. Although I love Go, I would argue given how little Go code there is here, we could do the entire tool in JS, but still make it a binary with one of these:
 
  * https://github.com/zeit/pkg
  * https://github.com/nexe/nexe
  * https://github.com/pmq20/node-packer
 
-The versioning and inlining of javascript into HTML can be achieved with the plethora of bundling tech:
+The vendoring, packaging, and inlining of javascript into HTML can be achieved with the plethora of bundling tech:
 
  * https://github.com/webpack/webpack
  * https://github.com/parcel-bundler/parcel
